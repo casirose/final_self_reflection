@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 [shiny](https://roshanshrestha.shinyapps.io/R_project/?_ga=2.19749040.903187739.1650071384-1388074096.1650071384)
 [Github](https://github.com/casirose/final_self_reflection)
 
-1. Import, manage, and clean data.
+Q. Import, manage, and clean data.
 
 In my shiny project there was many instants we I had to load csv files. I have loaded the csv dataset then cleaned the data set by removing row with NA and empty values and separated into different csv files as per my need in shiny project. I can also import different types of files by different ways. 
 
@@ -143,7 +143,7 @@ str_split_fixed(fifastr$player_tags,",", 2)
 
 ![shinyr](images/shinyr.png)
 
-2. Create graphical displays and numerical summaries of data for exploratory analysis and presentations.
+Q. Create graphical displays and numerical summaries of data for exploratory analysis and presentations.
  
 ggplot2 is a popular package used to make graphical diagram such as bar graph, line graph and many more graphs.By using ggplot2 I have made Bar graph,line graph, and scatter plot.
 
@@ -178,7 +178,7 @@ boxplot(fifa$overall)
 ```
 ![boxplot](images/boxplot.png)
 
-Analysis by simulation
+Q. Analysis by simulation and bootstrapping
 
 With simulation I can also create data similar to fifa overall dataset and perform hypothesis testing. 
 
@@ -323,7 +323,7 @@ sum(BootFile > 62.5 & BootFile < 69.5)
 We can see that from the sample1 data when we calculate the the mean from the sample1 dataset when replace is true we can get  mean between 62.5 and 69.5 but there is the 96.9% probability of getting mean between 64 and 68. We can also say that the data are normally distributed.
 
 
-4. Use source documentation and other resources to troubleshoot and extend R programs.
+Q. Use source documentation and other resources to troubleshoot and extend R programs.
 
 While learning, doing activity and project I had face my problem with the code and to solve it I refereed to r documentation, stackoverflow, and google to solve my issue. While solving my issue I got more insight in R and its syntax. Facing problem and reading documentation has help to develop my r knowledge and improve my understanding in R. Further I have also learn about many new packages like gganimate, esquisse and many more packages. Below is the snapshot of esquisse package used to make bar graph with drag and drop like tableau.
 
@@ -331,9 +331,15 @@ While learning, doing activity and project I had face my problem with the code a
 
 
 
-5.Write clear, efficient, and well-documented R programs.
+Q. Write clear, efficient, and well-documented R programs.
 
 From the class activities and from R documentations online I have learned to write a well documented R code. I have also learn to write clean and effective code by using map, pivot, join, stringr, dplyr, tidyverse. The class activities has been effective and helped me grasp a knowledge of R. Additionally, working on my final project has strengthen my knowledge on working with R and Rmd files. 
 
 
-Since I have meet all the objective, done the project, class activities and implmented it in this rmd file as well as in shiny app. Hence I will rate myself as A.
+Question 4: Based on the progress you have made (i.e., see your response in (3)), what final grade would you give yourself for this course? Try to stick to the major grade levels (“A”, “B”, “C”, or “D or below”). Please reach out to me if you have concerns or were unable to finish your final project.
+
+Since I have meet all the objective, done the project, class activities and implemented it in this rmd file as well as in shiny app. I have given my best to learn R programming and performed many hunderd line of code and learned from fixing the error face while writting code. Hence I will rate myself as A for the progress made through this semester. 
+
+Question 5:Do you have any other thoughts or reflections about the course that you’d like to share?
+
+R is very powerful tool in doing statistical analysis and that is why I wanted to learn R programming. Hence my further plan would be to continue learn R and implement thing learned from this course in performing data analysis. Additionally, I would like to make interactive site similar like our final project and creating my own portfolio in R. I would also coordinate with you to get idea about the project  anf for your help for many project to come. Thank for you showning me path to be better at R program and your contribution.
