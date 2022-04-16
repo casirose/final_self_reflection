@@ -1,0 +1,336 @@
+---
+title: "Untitled"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+[shiny](https://roshanshrestha.shinyapps.io/R_project/?_ga=2.19749040.903187739.1650071384-1388074096.1650071384)
+[Github](https://github.com/casirose/final_self_reflection)
+
+1. Import, manage, and clean data.
+
+In my shiny project there was many instants we I had to load csv files. I have loaded the csv dataset then cleaned the data set by removing row with NA and empty values and separated into different csv files as per my need in shiny project. I can also import different types of files by different ways. 
+
+Importing csv file:
+
+```{r}
+fifa <- read.csv("Fifa.csv", header = T)
+fifa
+```
+
+Importing Excel file:
+
+```{r}
+library(readxl)
+fifaxl = read_excel("Fifa.xlsx")
+fifaxl
+
+```
+
+
+Import files by here::here :
+
+```{r}
+library(here)
+dt <- readr::read_csv(here::here('data','Fifa.csv'))
+```
+
+
+Importing of image by using here::here.
+```{r}
+library(imager)
+img <- jpeg::readJPEG(here::here('images','r.jpeg'))
+img1<-load.image('~/518 Stat/Project_R/Final/images/r.jpeg')
+plot(img1)
+```
+![Image](images/Rimg.png)
+
+
+I am also able to write cvs from the data frame where we can easily download the the csv file:
+```{r}
+write.csv(fifaxl,"~/518 Stat/Project_R/fifaxl.csv", row.names = TRUE)
+```
+
+
+**Clean the data set.**
+
+I am able to clean the data by removing the NA, empty values and zero values from the dataset. For my shiny app I have imported many files from various sources and clean the data as per the requirement of the project.
+
+
+Removing the row with NA values, zero values and empty cell.
+```{r}
+fifaxl = fifaxl[!(is.na(fifaxl$potential) | fifaxl$potential=="" | fifaxl$potential=="0" ),]
+
+fifaxl
+```
+
+**Manage the data**
+
+I can isolation with in the data set by using dplyr function where I used select, filter, groupby, summarize and mutate.
+
+```{r}
+country <- fifaxl %>%
+  select(nationality_name,wage_eur) %>%
+  group_by(nationality_name) %>% 
+  summarize(Avg_Wages = mean(wage_eur, na.rm = TRUE))
+
+country
+```
+In the above code, I am able to group the data set by nation name and calculate the average wages of each country with the help of dyplyr and data pipelines.
+
+
+I am able to write write loop function to calculate the mean from the given data set.
+
+Writing loop to calculate mean of overall ranking of players.
+```{r}
+my_sum = 0
+len = length(fifaxl$overall)
+for(i in 1:len){
+    my_sum = my_sum + fifaxl$overall[i]
+}
+mean_overall = my_sum/len
+mean_overall
+```
+
+To avoid writing complicated and long code I am also able to write map function .
+
+
+I am also able to use map function for finding the mean of the data
+```{r}
+library(tidyverse)
+map1 <- fifaxl %>% select(overall,wage_eur,age) %>% map(mean)
+map1
+```
+
+
+Here I have merge the data of two different csv to form one data frame.
+
+```{r}
+one <- read.csv("one.csv")
+two <- read.csv("two.csv")
+# one
+# two
+
+total <- merge(one,two,by="short_name")
+total
+```
+ 
+According to the requirement of shiny app project I have used pivot wider and longer to manage the data as per the need of the project.
+
+Below is the sample code where pivot wider is used to make more columns.
+```{r}
+league <- read.csv("league.csv")
+league
+wide_league <- pivot_wider(league,names_from = year, values_from = Avg_Wages_league)
+wide_league
+```
+
+
+![wider](images/wider.png)
+Below I have use Stringr package to sepeate the values by coma.
+```{r}
+
+library("stringr")
+fifastr <- read.csv("fifastr.csv")
+fifastr
+str_split_fixed(fifastr$player_tags,",", 2)
+
+```
+
+![shinyr](images/shinyr.png)
+
+2. Create graphical displays and numerical summaries of data for exploratory analysis and presentations.
+ 
+ggplot2 is a popular package used to make graphical diagram such as bar graph, line graph and many more graphs.By using ggplot2 I have made Bar graph,line graph, and scatter plot.
+
+```{r}
+x <- fifa$wage_eur
+y <- fifa$overall
+plot(x, y, main = "Scatter Plot of overall rating vs wage",
+     xlab = "Salary", ylab = "Overall Rating",
+     pch = 19, frame = FALSE)
+```
+
+![scatter](images/scatter.png)
+
+```{r}
+
+bar<-read.csv("Bargraph.csv")
+g <- ggplot(bar, aes( y = Avg_Wages_league, x = league,fill=league))
+    g+ geom_bar(stat='identity') +scale_x_discrete(guide = guide_axis(check.overlap = TRUE))
+```
+![bargraph](images/bargraph.png)
+
+
+summary function is helpful in getting insight of the data where we get to know the median, maximun, minimum value.
+
+```{r}
+summary(fifa$overall)
+```
+
+we can also know median, maximum, minimum values from box plot.
+```{r}
+boxplot(fifa$overall)
+```
+![boxplot](images/boxplot.png)
+
+Analysis by simulation
+
+With simulation I can also create data similar to fifa overall dataset and perform hypothesis testing. 
+
+```{r}
+
+df <- rnorm(1000, mean = 65, sd = 10)
+
+hist(df)
+```
+Here we have create random normal variable with mean 65 and stranded deviation 10 and shown the data in histogram.
+
+
+```{r}
+summary(df)
+```
+
+Now lets create a sample from the df variable for our hypothesis testing. Where we will calculate the mean of the sample data and than compare it the df data frame mean. Our hypothesis would be H0: mean = 65.0928 and H1: mean ≠ 65.0928 . 
+```{r}
+set.seed(40)
+
+sampledf = sample(df,100,replace = TRUE)
+mean(sampledf)
+sd(sampledf)
+```
+
+
+We can test the hypothesis by p-value with the mean and dataset of the sampledf to find if we accept the the hypothesis or fail to reject it at 95% coincidence inteval.
+
+```{r}
+t.test(sampledf,y = NULL,  c("two.sided","less","greater"),mu = 65.0928, conf=0.95)
+```
+So p value is 0.1133 and the significance level is 0.05 where p- value is greater than confidence level. Hence we fail to reject the null hypothesis which means we accept the hypothesis H0.
+
+
+
+```{r}
+summary(fifa$overall)
+```
+Lets perform hypothesis testing on actual fifa 22 dataset
+
+```{r}
+set.seed(520)
+sample1 = sample(fifa$overall,50,replace = FALSE)
+mean(sample(fifa$overall,50,replace = FALSE))
+sd(sample1)
+```
+```{r}
+mean(fifa$overall)
+```
+our hypothesis would be mean(H0) = 65.77218 and other hypothesis would be H1: mean ≠ 65.77218.
+
+```{r}
+
+t.test(sample1,y = NULL,  c("two.sided","less","greater"),mu = 65.77218, conf=0.95)
+```
+So p value is 0.6966 and the significance level is 0.05 where p- value is greater than confidence level. Hence we fail to reject the null hypothesis which means we accept the hypothesis H0.
+
+
+With the help of R I am also able to calculate the linear regression for the variable such as player wage and their overall rating.
+
+```{r}
+fifa_reg <- lm(wage_eur~overall, data  = fifaxl)
+summary(fifa_reg)
+```
+
+
+
+#bootstrapping:
+My plan here is to take sample from overall player data than perform bootstrapping to those data to know the distribution of mean along with their frequency.
+
+
+```{r}
+set.seed(520)
+sample1 = sample(fifa$overall,50,replace = FALSE)
+n <- length(sample1)
+Boot <- 10000
+
+```
+Here I have taken 50 sample of overall player data from fifa dataset where replace is false, which means the data from the same row is not selected. I have set seed because set seed allows us to get same set of random values every time while executing the code and we do not get different means and different output.
+
+```{r}
+Bootsample <- matrix(sample(sample1, size = n*Boot, replace=TRUE), nrow = n, ncol= Boot)
+```
+
+Here I have create a bootstrap  which is 50 by 10000 matrix (where size = 50 * 10000). Where 50 is number of row and 10000 is number of columns. I have taken sample from the sample1 data set which is again sample of 50 data from fifa overall player dataset. for the sample taken from sample1 in the Bootsample I have set replace equals to true which means that repetition selection from the same rows are allowed while taking the sample to form the bootstrap.
+
+
+```{r}
+dim(Bootsample)
+```
+We can see that we have created Bootsample with 50 by 10000 matrix. 
+
+```{r}
+hist(Bootsample)
+```
+![hist](images/hist.png)
+
+I have created a histogram of the the Bootsample to get more insight about the data. 
+
+```{r}
+sort(sample1)
+```
+
+There is gap between 50 and 55 because in out data set sample1 we do not have the values between 50 and 55 and similar is the case between 76 and 79.
+
+
+
+```{r}
+BootFile <- rep(0,Boot)
+for (i in 1:Boot){
+  BootFile[i] <- mean(Bootsample[1:50,i])
+}
+```
+
+I have create a vector with the name BootFile with 0 values. Again I have written code to calculate the mean from every 10000 columns and assign those values to BootFile.
+
+```{r}
+BootFile
+```
+This is the means of every 50 rows in the bootstrap.
+
+```{r}
+#mean of 10000 Bootstrapping
+hist(BootFile)
+```
+![histboot](images/histboot.png)
+
+
+Here is the histogram of the means from the bootstapping. 
+
+```{r}
+sum(BootFile > 64 & BootFile < 68)
+```
+
+```{r}
+sum(BootFile > 65 & BootFile < 67)
+```
+```{r}
+sum(BootFile > 62.5 & BootFile < 69.5)
+```
+
+We can see that from the sample1 data when we calculate the the mean from the sample1 dataset when replace is true we can get  mean between 62.5 and 69.5 but there is the 96.9% probability of getting mean between 64 and 68. We can also say that the data are normally distributed.
+
+
+4. Use source documentation and other resources to troubleshoot and extend R programs.
+
+While learning, doing activity and project I had face my problem with the code and to solve it I refereed to r documentation, stackoverflow, and google to solve my issue. While solving my issue I got more insight in R and its syntax. Facing problem and reading documentation has help to develop my r knowledge and improve my understanding in R. Further I have also learn about many new packages like gganimate, esquisse and many more packages. Below is the snapshot of esquisse package used to make bar graph with drag and drop like tableau.
+
+![esquisse](images/esquisse1.png)
+
+5.Write clear, efficient, and well-documented R programs.
+
+From the class activities and from R documentations online I have learned to write a well documented R code. I have also learn to write clean and effective code by using map, pivot, join, stringr, dplyr, tidyverse. The class activities has been effective and helped me grasp a knowledge of R. Additionally, working on my final project has strengthen my knowledge on working with R and Rmd files. 
+
+
