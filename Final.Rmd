@@ -329,8 +329,11 @@ While learning, doing activity and project I had face my problem with the code a
 
 ![esquisse](images/esquisse1.png)
 
+
+
 5.Write clear, efficient, and well-documented R programs.
 
 From the class activities and from R documentations online I have learned to write a well documented R code. I have also learn to write clean and effective code by using map, pivot, join, stringr, dplyr, tidyverse. The class activities has been effective and helped me grasp a knowledge of R. Additionally, working on my final project has strengthen my knowledge on working with R and Rmd files. 
 
 
+Since I have meet all the objective, done the project, class activities and implmented it in this rmd file as well as in shiny app. Hence I will rate myself as A.
