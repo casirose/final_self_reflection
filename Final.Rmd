@@ -1,15 +1,20 @@
 ---
-title: "Untitled"
-output: pdf_document
+title: "Roshan Shrestha Final Self Reflection"
+
+output: 
+  pdf_document: 
+    latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 
-[shiny](https://roshanshrestha.shinyapps.io/R_project/?_ga=2.19749040.903187739.1650071384-1388074096.1650071384)
-[Github](https://github.com/casirose/final_self_reflection)
+Link to my [Shiny app](https://roshanshrestha.shinyapps.io/R_project/?_ga=2.19749040.903187739.1650071384-1388074096.1650071384)
+
+Link to my [Github](https://github.com/casirose/final_self_reflection)
 
 Q. Import, manage, and clean data.
 
@@ -19,7 +24,7 @@ Importing csv file:
 
 ```{r}
 fifa <- read.csv("Fifa.csv", header = T)
-fifa
+head(fifa)
 ```
 
 Importing Excel file:
@@ -47,6 +52,8 @@ img <- jpeg::readJPEG(here::here('images','r.jpeg'))
 img1<-load.image('~/518 Stat/Project_R/Final/images/r.jpeg')
 plot(img1)
 ```
+
+
 ![Image](images/Rimg.png)
 
 
@@ -73,12 +80,13 @@ fifaxl
 I can isolation with in the data set by using dplyr function where I used select, filter, groupby, summarize and mutate.
 
 ```{r}
+library(dplyr)
 country <- fifaxl %>%
   select(nationality_name,wage_eur) %>%
   group_by(nationality_name) %>% 
   summarize(Avg_Wages = mean(wage_eur, na.rm = TRUE))
 
-country
+head(country)
 ```
 In the above code, I am able to group the data set by nation name and calculate the average wages of each country with the help of dyplyr and data pipelines.
 
@@ -102,7 +110,7 @@ To avoid writing complicated and long code I am also able to write map function 
 I am also able to use map function for finding the mean of the data
 ```{r}
 library(tidyverse)
-map1 <- fifaxl %>% select(overall,wage_eur,age) %>% map(mean)
+map1 <- fifaxl %>% select(overall,wage_eur) %>% map_dbl(mean)
 map1
 ```
 
@@ -116,7 +124,7 @@ two <- read.csv("two.csv")
 # two
 
 total <- merge(one,two,by="short_name")
-total
+head(total)
 ```
  
 According to the requirement of shiny app project I have used pivot wider and longer to manage the data as per the need of the project.
@@ -163,6 +171,8 @@ bar<-read.csv("Bargraph.csv")
 g <- ggplot(bar, aes( y = Avg_Wages_league, x = league,fill=league))
     g+ geom_bar(stat='identity') +scale_x_discrete(guide = guide_axis(check.overlap = TRUE))
 ```
+
+
 ![bargraph](images/bargraph.png)
 
 
@@ -176,6 +186,8 @@ we can also know median, maximum, minimum values from box plot.
 ```{r}
 boxplot(fifa$overall)
 ```
+
+
 ![boxplot](images/boxplot.png)
 
 Q. Analysis by simulation and bootstrapping
@@ -274,6 +286,8 @@ We can see that we have created Bootsample with 50 by 10000 matrix.
 ```{r}
 hist(Bootsample)
 ```
+
+
 ![hist](images/hist.png)
 
 I have created a histogram of the the Bootsample to get more insight about the data. 
@@ -295,15 +309,14 @@ for (i in 1:Boot){
 
 I have create a vector with the name BootFile with 0 values. Again I have written code to calculate the mean from every 10000 columns and assign those values to BootFile.
 
-```{r}
-BootFile
-```
 This is the means of every 50 rows in the bootstrap.
 
 ```{r}
 #mean of 10000 Bootstrapping
 hist(BootFile)
 ```
+
+
 ![histboot](images/histboot.png)
 
 
@@ -316,6 +329,7 @@ sum(BootFile > 64 & BootFile < 68)
 ```{r}
 sum(BootFile > 65 & BootFile < 67)
 ```
+
 ```{r}
 sum(BootFile > 62.5 & BootFile < 69.5)
 ```
@@ -336,10 +350,10 @@ Q. Write clear, efficient, and well-documented R programs.
 From the class activities and from R documentations online I have learned to write a well documented R code. I have also learn to write clean and effective code by using map, pivot, join, stringr, dplyr, tidyverse. The class activities has been effective and helped me grasp a knowledge of R. Additionally, working on my final project has strengthen my knowledge on working with R and Rmd files. 
 
 
-Question 4: Based on the progress you have made (i.e., see your response in (3)), what final grade would you give yourself for this course? Try to stick to the major grade levels (“A”, “B”, “C”, or “D or below”). Please reach out to me if you have concerns or were unable to finish your final project.
+**Question 4:** Based on the progress you have made (i.e., see your response in (3)), what final grade would you give yourself for this course? Try to stick to the major grade levels (“A”, “B”, “C”, or “D or below”). Please reach out to me if you have concerns or were unable to finish your final project.
 
 Since I have met all the objective, done the project, class activities and implemented it in this rmd file as well as in shiny app. I have given my best to learn R programming and performed many hundred line of code and learned from fixing the error while writing the code. Hence I will rate myself an "A" for the progress made through this semester. 
 
-Question 5:Do you have any other thoughts or reflections about the course that you’d like to share?
+**Question 5:**Do you have any other thoughts or reflections about the course that you’d like to share?
 
 R is very powerful tool in doing statistical analysis and that is why I wanted to learn R programming. Hence my further plan would be to continue learn R and implement thing learned from this course in performing data analysis. Additionally, I would like to make interactive site similar like our final project and creating my own portfolio in R. Thank for showing me path to be better at R program and would also like to Thank you for your contribution.
