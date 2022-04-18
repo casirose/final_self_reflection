@@ -73,7 +73,7 @@ title<-
                              
                              tabPanel("Country Average Salary",
                                       sidebarPanel(
-                                        tags$h3("Input:"),
+                                        tags$h3("Country Average Salary Table"),
                                         tableOutput("country_table")
                                         
                                       ), # sidebarPanel
