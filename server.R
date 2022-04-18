@@ -30,7 +30,6 @@ server <- function(input, output) {
            contentType = 'image/gif',
            width = 900,
            height = 400
-           # alt = "This is alternate text"
       )}, deleteFile = FALSE)
 
 
@@ -62,7 +61,7 @@ server <- function(input, output) {
   #Country-----------------------------------------------------------------
   
   
-  output$country_2d <-renderPlot({
+  output$country_map <-renderPlot({
     library(ggmap)
     library(maps)
     library(mapproj)
@@ -88,7 +87,7 @@ server <- function(input, output) {
   
 
 # Linegraph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-output$ethnicity <-renderPlot({
+output$linegraph <-renderPlot({
   line <- read.csv(file ='linegraph8.csv')
   g <- ggplot(line, aes( y = Overall, x = Year,color=Player))
   g + geom_line()+theme_bw()
@@ -96,7 +95,7 @@ output$ethnicity <-renderPlot({
 })
 
 
-# InterBarGarph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Interlinegraph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 output$ethnicity_data <-renderImage({
   line <- read.csv(file ='linegraph8.csv')
   
@@ -109,6 +108,8 @@ output$ethnicity_data <-renderImage({
        contentType = 'image/gif'
        
   )}, deleteFile = FALSE)
+
+
 
 
 
