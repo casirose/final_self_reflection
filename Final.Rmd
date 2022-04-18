@@ -11,24 +11,36 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
+**Provide a URL for your final project. If you created a Shiny App as your data product, you should include a link to the GitHub repository that contains your code as well as a link to your Shiny App hosted on shinyapp.io (see Chapter 2 of the shinyapps.io User Guide - this is free, but you need to sign up for an account). If you created some other type of data product, you should include a link to the GitHub repository that contains your code as well as a direct link to your data product.**
+
+My final project on Fifa 22 analysis and below is my github and Shiny app link. 
 
 Link to my [Shiny app](https://roshanshrestha.shinyapps.io/R_project/?_ga=2.19749040.903187739.1650071384-1388074096.1650071384)
 
 Link to my [Github](https://github.com/casirose/final_self_reflection)
 
-Q. Import, manage, and clean data.
+**Did you work with a group? If so, include the names of your other group members here.**
+No, I have done this project individually. 
+
+**A thorough reflection on your work in this class. Talk about the work you’ve done for the course. Remember that I am interested in the progress have you made towards each course-level learning objectives. Look through your work to determine what you could use to demonstrate (show and discuss) your progress. Provide links directly to your evidence or embed snapshot examples of your work. Be sure to describe how your work demonstrates your progress towards each objectives. Consider the work you did on the final project, your work earlier in the term, the feedback you offered your peers on their work, and how you met your own goals. Feel free to include more links to examples of your work as necessary (again, please point directly to the specific work - not some general document link - so that I can easily review it). Tell me what you are particularly proud of. This is the place to be as honest as possible about your work, both reflecting critically and talking about what you proved capable of in the midst of an incredibly challenging semester. Remember that this is a reflection about your work, not your classmates.**
+
+I have learned a lot from this class from developing plots to making and deploying interactive visualization with the help of shiny and R programming. Class activities and notes has been effective for my to build a proper foundation in r programming. By doing class activities and finding the solution of errors in my program has made me a better programmer in R. 
+
+I have also build shiny app with further extend my learning curve by developing interactive visualization site. I have developed a project on Fifa 22 game analysis whose link can be found in this files as well as in my github account. In the code chuck I have written the code that I know and met the course objective.
+
+
+**Q. Import, manage, and clean data.**
 
 In my shiny project there was many instants we I had to load csv files. I have loaded the csv dataset then cleaned the data set by removing row with NA and empty values and separated into different csv files as per my need in shiny project. I can also import different types of files by different ways. 
 
-Importing csv file:
+*Importing csv file:*
 
 ```{r}
 fifa <- read.csv("Fifa.csv", header = T)
 head(fifa)
 ```
 
-Importing Excel file:
-
+*Importing Excel file:*
 ```{r}
 library(readxl)
 fifaxl = read_excel("Fifa.xlsx")
@@ -37,7 +49,7 @@ fifaxl
 ```
 
 
-Import files by here::here :
+*Import files by here::here :*
 
 ```{r}
 library(here)
@@ -45,7 +57,7 @@ dt <- readr::read_csv(here::here('data','Fifa.csv'))
 ```
 
 
-Importing of image by using here::here.
+*Importing of image by using here::here.*
 ```{r}
 library(imager)
 img <- jpeg::readJPEG(here::here('images','r.jpeg'))
@@ -151,7 +163,7 @@ str_split_fixed(fifastr$player_tags,",", 2)
 
 ![shinyr](images/shinyr.png)
 
-Q. Create graphical displays and numerical summaries of data for exploratory analysis and presentations.
+**Q. Create graphical displays and numerical summaries of data for exploratory analysis and presentations.**
  
 ggplot2 is a popular package used to make graphical diagram such as bar graph, line graph and many more graphs.By using ggplot2 I have made Bar graph,line graph, and scatter plot.
 
@@ -182,7 +194,7 @@ summary function is helpful in getting insight of the data where we get to know 
 summary(fifa$overall)
 ```
 
-we can also know median, maximum, minimum values from box plot.
+We can also know median, maximum, minimum values from box plot.
 ```{r}
 boxplot(fifa$overall)
 ```
@@ -190,7 +202,7 @@ boxplot(fifa$overall)
 
 ![boxplot](images/boxplot.png)
 
-Q. Analysis by simulation and bootstrapping
+**Q. Analysis by simulation and bootstrapping**
 
 With simulation I can also create data similar to fifa overall dataset and perform hypothesis testing. 
 
@@ -258,7 +270,7 @@ summary(fifa_reg)
 
 
 
-#bootstrapping:
+*#bootstrapping:*
 My plan here is to take sample from overall player data than perform bootstrapping to those data to know the distribution of mean along with their frequency.
 
 
@@ -337,7 +349,7 @@ sum(BootFile > 62.5 & BootFile < 69.5)
 We can see that from the sample1 data when we calculate the the mean from the sample1 dataset when replace is true we can get  mean between 62.5 and 69.5 but there is the 96.9% probability of getting mean between 64 and 68. We can also say that the data are normally distributed.
 
 
-Q. Use source documentation and other resources to troubleshoot and extend R programs.
+**Q. Use source documentation and other resources to troubleshoot and extend R programs.**
 
 While learning, doing activity and project I had face my problem with the code and to solve it I refereed to r documentation, stackoverflow, and google to solve my issue. While solving my issue I got more insight in R and its syntax. Facing problem and reading documentation has help to develop my r knowledge and improve my understanding in R. Further I have also learn about many new packages like gganimate, esquisse and many more packages. Below is the snapshot of esquisse package used to make bar graph with drag and drop like tableau.
 
@@ -345,7 +357,7 @@ While learning, doing activity and project I had face my problem with the code a
 
 
 
-Q. Write clear, efficient, and well-documented R programs.
+**Q. Write clear, efficient, and well-documented R programs.**
 
 From the class activities and from R documentations online I have learned to write a well documented R code. I have also learn to write clean and effective code by using map, pivot, join, stringr, dplyr, tidyverse. The class activities has been effective and helped me grasp a knowledge of R. Additionally, working on my final project has strengthen my knowledge on working with R and Rmd files. 
 
