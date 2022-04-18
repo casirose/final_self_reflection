@@ -20,7 +20,7 @@ title<-
                   navbarPage("Fifa 22 Analysis",
                              tabPanel("Home",
                                       sidebarPanel(
-                                        tags$img(src = "fifa.jpg", height= "250px", width="400px", deleteFile=FALSE),
+                                        tags$img(src = "fifa.jpg", height= "250px", width="375px", deleteFile=FALSE),
                                         # selectInput("cyear", "Choose Year", choices = unique(league1$year),selected = "2022"),
                                       ),
                                       mainPanel(
@@ -55,7 +55,7 @@ title<-
                                         
                                         selectInput("league", "Choose League", choices = unique(club$League),selected = "EPL"),
                                         
-                                        h4("Clubs Average salary "),
+                                        h4("Bar Graph of Clubs Average salary "),
                                         
                                         tableOutput("league_table")
                                       ), # sidebarPanel
@@ -75,24 +75,34 @@ title<-
                                       sidebarPanel(
                                         tags$h3("Input:"),
                                         tableOutput("country_table")
-                                        # 
+                                        
                                       ), # sidebarPanel
                                       mainPanel(
+                                        h4("World Map of Country Average Salary"),
                                         
-                                        
-                                        plotOutput("country_2d"),
+                                        plotOutput("country_map"),
                                       
-                                        
+                                        p("The map visualization shows the average salary as per the countries. We can analyze the highest paying country is Egypt with 43,100 Euros to its player. It is then followed by Tanzania with the average salary of 40,000 Euros. Thai map visualized the country which provides the average salary to its player. Also, I have used a sequential color scale which helps us determine the darker shade color of the country which pays the highest average salary to its players and vice versa."
+                                          ,align = "center")
                                       )
                              )#tabPanel
                              
                              
                              ,
                              tabPanel("Past Five Year Rating",
-                                 
+                                      sidebarPanel(
+                                        tags$img(src = "fifa.jpg", height= "250px", width="375px", deleteFile=FALSE),
+                                        # selectInput("cyear", "Choose Year", choices = unique(league1$year),selected = "2022"),
+                                      ),
                                       
                                       mainPanel(
+                                        h4("linegraph of Top 10 player of Fifa 22 for past five years"),
                                         tags$img(src = "line.gif"),
+                                        p("The above line graph depicts the trend of the player’s salary from the year 2018 to 2022. The players selected are top 10 players of the FIFA 2022. The top player Christiano Ronaldo had the maximum average wage in 2018 which was constant till 2019 and then it showed a gradual decrease till 2022. However, for Lionel Messi it was lower than Ronaldo’s in 2018, however it gradually increased over the year. Also, twe can see the average salary of the other players following the line graph above."
+                                          ,align = "center"),
+                                        br(),
+                                        plotOutput("linegraph")
+                                        
                                       )
                              ),
                         tabPanel("Correlation With Age",
@@ -104,7 +114,10 @@ title<-
                                                
          mainPanel(
            h4("Scatter plot of Salary vs other variables"),
-           plotOutput("plotScatter")
+           plotOutput("plotScatter"),
+           p("The above scatter plot shows the correlation with salaary with overall player rating. We can also change the input from left tab bar. Where we can choose Age, overall, potential, Height ,weight, pace, shooting, passing, dribbling, defending, physic of player vs salary of player.  "
+             ,align = "center")
+           
           
            
            
